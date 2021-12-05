@@ -1,0 +1,37 @@
+/*
+Escreva um programa que leia 5 numeros e aloque em um vetor.
+//Some todos os valores do vetor e imprima o resultado.
+Use ponteiros para acessar as posições do vetor
+*/
+
+#include <stdio.h>
+#include <locale.h>
+
+main(){
+     setlocale(LC_ALL, "Portuguese");
+
+    int v[5], i, soma=0, pos;
+    int *vet[5];
+
+    for(i=0;i<5;i++){
+        printf("Forneça o V[%d]: ", i);
+        scanf("%d", &v[i]);
+        vet[i] = &v[i];
+    }
+
+	printf("--- Soma ---\n");
+	printf("A soma dos números:\n");
+    for(i=0;i<5;i++){
+		
+    printf("%d\n", v[i]);
+    soma = soma+*vet[i];
+    
+}
+printf("É: %d\n", soma);
+while(pos>=0 && pos<=4){
+printf("\nQual posição você deseja acessar? (digite 5 para fechar)\n");
+printf("Posição ");
+scanf("%d", &pos);
+printf("O número é: %d\n", *vet[pos]);
+}
+}
