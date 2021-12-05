@@ -1,0 +1,47 @@
+/* 
+	- - - Pedro Henrique Barduni da Conceição - - -
+			
+1. Faça um algoritmo usando struct e vetores que
+   registre os seguintes dados de 3 pacientes:
+   Matricula, idade e sexo.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#define MAX 3
+
+struct Paciente {
+    char matricula[30];
+    int idade;
+	char sexo[1];
+};
+typedef struct Paciente P;
+int registro(P pacientes[], int *pos){
+	int i;
+	setlocale(LC_ALL, "Portuguese");
+    printf("- - - - - Cadastro de Pacientes - - - - -\n\n");
+    for(i=0;i<MAX;i++){
+    printf("Nome do paciente: ");
+    fflush(stdin);
+    fgets(pacientes[i].matricula, 30, stdin);
+    printf("Idade do paciente: ");
+    scanf("%d", &pacientes[i].idade);
+    printf("Sexo do paciente (M ou F): ");
+    fflush(stdin);
+    fgets(pacientes[i].sexo, 30, stdin);
+    printf("\n");
+}
+ 	for (i=0;i<MAX;i++){
+ 		printf("\nMatrícula do paciente %d: %s", i+1, pacientes[i].matricula);
+ 		printf("Idade do paciente %d: %d\n", i+1, pacientes[i].idade);
+ 		printf("Sexo do paciente %d: %s\n", i+1, pacientes[i].sexo);
+	 }
+}
+int main (){
+	P pacientes[MAX];
+    int i=0;  
+setlocale(LC_ALL, "Portuguese");
+registro(pacientes, &i);
+}
