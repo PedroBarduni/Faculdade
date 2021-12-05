@@ -1,0 +1,186 @@
+/*
+
+ - Pedro Henrique Barduni da Conceição
+ 
+ - Unidade de Cataguases
+
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define MAX 5
+#include <locale.h>
+
+struct Funcionario {
+    char nm[35]; // nome 
+    int id;	// idade 
+	int cpf; // cpf 
+    float sal; // salário 
+};
+
+typedef struct Funcionario pp;
+
+int menu() { /* ----MENU---- */
+setlocale(LC_ALL, "Portuguese");
+	int opc; // opção 
+    printf("\n- - - - Empresa PP - - - -\n\n");
+    printf("1. Novo Funcionário");
+    printf("\n2. Listar todos os funcionários");
+    printf("\n3. Pesquisar um funcionário pelo CPF");
+    printf("\n4. Excluir um funcionário");
+    printf("\n5. Média dos salários dos funcionários");
+    printf("\n6. Sair do sistema");
+    printf("\nEscolha uma opção: ");
+    scanf("%d", &opc);
+    return opc;
+}
+
+void cad_Fun(pp fun[], int *pos){
+	printf("\n - - - - Cadastro de Funcionário - - - - \n\n"); /* ----CADASTRO DE PESSOAS---- */
+	printf("Nome do funcionário:\n");
+        fflush(stdin);
+        fgets(fun[*pos].nm, 30, stdin);
+        printf("\nCPF:\n");
+        fflush(stdin);
+        scanf("%d", &fun[*pos].cpf);
+        printf("\nIdade:\n");
+        scanf("%d", &fun[*pos].id);
+        printf("\nSalario:\n");
+        scanf("%f", &fun[*pos].sal);
+        (*pos)++;
+        printf("\n!!Cadastrado com sucesso!!\n");
+}
+
+void list_Fun(pp fun[], int qtde){ /* ----LISTAGEM DE FUNCIONÁRIOS---- */
+	 int i, l=1;
+    if (qtde==0){
+        printf("\nNenhum funcionário registrado.\n");
+    } 
+	else {
+		printf("\n - - - - LISTA DE FUNCIONARIOS - - - - \n\n");
+        for(i=0; i<qtde; i++) {
+        	printf("Funcionário (%d):\n", l);
+            printf("Nome: %s", fun[i].nm);
+            printf("CPF: %d\n", fun[i].cpf);
+            printf("Idade: %d\n", fun[i].id);
+            printf("Salário: %.2f\n\n", fun[i].sal);
+            l++;
+        }
+    }
+}
+
+void pesq_Fun(pp fun[], int *qtde){ /* ----PESQUISA POR CPF---- */
+	int i, opcpf;
+	if((*qtde)==0){
+	printf("\n - - - - Busca de Funcionário - - - - \n\n");
+	printf("Nenhum funcionário cadastrado.\n\n");
+	}
+	else{
+		printf("\n - - - - Busca de Funcionário - - - - \n\n");
+		printf("Informe o CPF a ser consultado: ");
+		fflush(stdin);
+		scanf("%d", &opcpf);
+	for(i=0;i<MAX;i++){
+	if(opcpf == fun[i].cpf){
+		printf("\n - - - - Dados do funcionário - - - - \n\n");
+		printf("Nome: %s", fun[i].nm);
+  		printf("\nCPF: %d\n", fun[i].cpf);
+  		printf("\nIdade: %d\n", fun[i].id);
+  		printf("\nSalário: %.2f\n\n", fun[i].sal);
+	}
+	}
+	
+}
+}
+
+void ex_Fun(pp fun[], int *qtde){ /* ----EXCLUIR FUNCIONÁRIO---- */
+    int i, u, delet;
+    if ((qtde) == 0){
+        printf("\n - - - - Exclusão de Funcionário - - - - \n\n");
+        printf("\nImpossível excluir. Nenhum funcionario registrado.\n");
+    } 
+    else {
+        printf("\n - - - - Exclusão de Funcionário - - - - \n\n");
+        printf("Informe o CPF do funcionário que deseja excluir: ");
+        scanf("%d", &delet);
+        for(i=0; i < (*qtde); i++) {
+            if (delet == fun[i].cpf) {
+                for(u=i; u < (*qtde)-1; u++) {
+                    fun[u] = fun[u+1];
+                }
+                (*qtde)--;
+                printf("Funcionário removido!");
+                break;
+            }
+        }
+    }
+}
+
+void med_Fun (pp fun[], int *qtde){ /* ----MÉDIA SALÁRIO---- */
+	int i, sal, cont=0; 
+	float med=0; // media 	
+	if ((*qtde) == 0){
+    	printf("\n - - - - Média de Salários dos Funcionários - - - - \n\n");
+        printf("\nImpossível consultar média. Nenhum funcionário registrado!\n");
+    } 
+    else{
+  		for(i=0;i<MAX;i++){
+		med = med + fun[i].sal;
+	}
+	}
+	printf("Antes: %.2f", med);
+	med=med/(*qtde);
+    	printf("\n - - - - Média de Salários - - - - \n\n");
+    	printf("A média dos salários é: %.2f\n", med);
+    	fflush(stdin);
+    	med=cont;
+	}
+	
+int main (){
+setlocale(LC_ALL, "Portuguese");
+	pp func[MAX];
+    int opc, quant=0;
+    do{
+    opc = menu();
+	switch(opc){
+		
+    case 1:
+    	system("CLS");
+   	cad_Fun(func, &quant);
+	break;
+	
+	case 2:
+		system("CLS");
+    list_Fun(func, quant);
+	break;
+	
+	case 3:
+		system("CLS");
+	pesq_Fun(func, &quant);
+	break;
+	
+ 	case 4:
+ 		system("CLS");
+	ex_Fun(func, &quant);
+	break;
+	
+	case 5:
+		system("CLS");
+	med_Fun(func, &quant);
+	break;
+	
+	case 6:
+	printf("\nVocê saiu do sistema com êxito!\n");
+	system("PAUSE");
+	break;
+	
+	}
+	if(opc<1 or opc>6){
+		system("CLS");
+		printf("\nOpção inválida.\n");
+	}
+}
+while (opc!=6);{	
+}
+}
