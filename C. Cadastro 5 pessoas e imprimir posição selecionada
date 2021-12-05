@@ -1,0 +1,42 @@
+/*
+Pedro Henrique Barduni da Conceição. 
+Implemente um programa que leia o cpf e a idade de 5 pessoas e armazene os dados em um vetor de 5 posições.
+Depois imprima os dados referentes a posição que o usuário solicitar.
+Por exemplo posição 2 do vetor. Assim deve-se imprimir todos os dados da posição 2. */
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#define TAM 5
+int i, op;
+
+struct Cadastro{
+int cpf[11];
+int idade[3];
+};
+typedef struct Cadastro C;
+
+int main(){
+setlocale(LC_ALL, "Portuguese");
+
+C cadastro[TAM];
+
+for(i=0;i<5;i++){
+printf("Insira o CPF da %dº pessoa: ", i+1);
+scanf("%d", &cadastro[i].cpf);
+printf("Insira a idade da %dº pessoa: ", i+1);
+scanf("%d", &cadastro[i].idade);
+printf("\n");
+}
+system("CLS");
+
+while (op!=6){
+printf("\n\nQual posicao deseja consultar? (Digite 6 para finalizar o sistema)\n->");
+scanf("%d", &op);
+system("CLS");
+printf("\nPosicao %d\n->CPF = %d\n->Idade = %d", op, *cadastro[op-1].cpf, *cadastro[op-1].idade);
+
+}
+}
