@@ -1,0 +1,33 @@
+/* Pedro Barduni;
+Crie um algoritmo que tenha dois vetores. Faça o usuário digitar os valores e onserir no primeiro vetor.
+Depois copie todo o vetor 1 para o vetor 2 dobrando os valores
+Imprima o vetor 1 e o vetor 2.
+use ponteiros para todas as operações.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+
+main(){
+     setlocale(LC_ALL, "Portuguese");
+
+    int v1[5], i;
+    int v2[5], *vet2;
+
+    for(i=0;i<5;i++){
+        printf("Forneça o %dº número: ", i+1);
+        scanf("%d", &v1[i]);
+    }
+    for(i=0; i<5; i++){
+		printf("\nVetor 1: Posição %d = %d\n", i+1, v1[i]);
+		fflush(stdin);
+	}
+	printf("\n\nSegue abaixo, o Resultado da Multiplicação:");
+  for (i = 0; i < 5; i++) {
+    v2[i] = v1[i]*2;
+    vet2 = &v2[i];
+    printf("\nVetor 2: Posição %d = %d\n", i+1, *vet2);
+  }
+}
