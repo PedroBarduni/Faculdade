@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+main()
+{
+	int m[4][4];
+	int i, j;
+	for(i=0; i<4; i++)
+	for(j=0; j<4; j++)
+	scanf("%d", &m[i][j]);
+	
+	for(i=0; i<4; i++)
+	{
+	for(j=0; j<4; j++)
+	printf("%d", m[i][j]);
+	printf("\n");
+	}
+	
+}
