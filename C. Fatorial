@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+main(){
+    int num,i,fat=1;
+
+    printf("Type a number: ");
+    scanf("%d", &num);
+    
+    for(i=num; i>0; i--){
+    	fat*=i;
+	}
+	printf("Result: %d\n\n", fat);
+
+
+}
