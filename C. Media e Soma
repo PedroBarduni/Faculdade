@@ -1,0 +1,29 @@
+/*
+Calculando a soma e média de 5 números.
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main ( void ) {
+setlocale(LC_ALL, "Portuguese");
+int vetor[5], i;
+float soma = 0;
+float media;
+
+for ( i = 0; i < 5; i++ ) {
+printf("Forneça o %dº número: ", i+1);
+scanf ( "%d", &vetor[i] );
+}
+// SOMA
+for ( i = 0; i < 5; i++ )
+soma += vetor[i];
+printf ( "\nSoma total: %.2f\n", soma );
+// MÉDIA
+media = soma / 5;
+printf ( "\nMédia : %.2f\n", media );
+
+system ("pause");
+
+return 0;
+}
